@@ -7,7 +7,7 @@ A hands-on codelab teaching you to build production-grade AI agents that handle 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![ADK](https://img.shields.io/badge/Google%20ADK-1.17%2B-green)
 ![Gemini](https://img.shields.io/badge/Gemini-2.5-red)
-![Duration](https://img.shields.io/badge/Duration-2.5%20hours-orange)
+![Duration](https://img.shields.io/badge/Duration-2%20hours-orange)
 
 ## 🌟 What You'll Build
 
@@ -93,7 +93,7 @@ Expected output:
 
 **👉 [Start the Codelab](https://codelabs.developers.google.com/adk-ap2-charity-agents/instructions)**
 
-The codelab guides you through 10 modules (2.5 hours total):
+The codelab guides you through 10 modules (2 hours total):
 
 1. **Understanding the Problem** - Why trust matters for AI agents
 2. **Setup** - Environment configuration
