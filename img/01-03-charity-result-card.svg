@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" style="background: #ffffff;">
+  <!-- Definitions -->
+  <defs>
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.15"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Blue gradient for header -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Green gradient for verification -->
+    <linearGradient id="verifyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="50" y="50" width="700" height="450" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    
+    <!-- Header Section -->
+    <rect x="50" y="50" width="700" height="100" rx="16" fill="#F9FAFB"/>
+    <rect x="50" y="134" width="700" height="16" fill="#F9FAFB"/>
+    
+    <!-- Charity Icon/Logo Circle -->
+    <circle cx="110" cy="95" r="35" fill="url(#headerGrad)"/>
+    <text x="110" y="110" font-family="Arial" font-size="36" fill="#FFFFFF" text-anchor="middle">🌍</text>
+    
+    <!-- Charity Name -->
+    <text x="165" y="90" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">
+      Literacy First Foundation
+    </text>
+    
+    <!-- Star Rating -->
+    <text x="165" y="120" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#F59E0B">
+      ⭐ 4.9/5.0
+    </text>
+    
+    <!-- Mission Section -->
+    <rect x="70" y="170" width="660" height="70" rx="8" fill="#EFF6FF"/>
+    <text x="90" y="195" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#1E40AF">
+      Mission
+    </text>
+    <text x="90" y="220" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#1E3A8A">
+      Teaches reading skills to children in rural communities
+    </text>
+    
+    <!-- Impact Section -->
+    <rect x="70" y="255" width="660" height="70" rx="8" fill="#FEF3C7"/>
+    <text x="90" y="280" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#92400E">
+      Impact
+    </text>
+    <text x="90" y="305" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#78350F">
+      Your $50 provides 20 new books for a classroom library
+    </text>
+    
+    <!-- Efficiency Section -->
+    <rect x="70" y="340" width="320" height="55" rx="8" fill="#D1FAE5"/>
+    <text x="90" y="365" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#065F46">
+      Efficiency
+    </text>
+    <text x="90" y="385" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#047857">
+      94% of funds go to programs
+    </text>
+    
+    <!-- EIN Section -->
+    <rect x="410" y="340" width="320" height="55" rx="8" fill="#F3F4F6"/>
+    <text x="430" y="365" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#374151">
+      Tax ID (EIN)
+    </text>
+    <text x="430" y="385" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#6B7280">
+      77-0479905
+    </text>
+    
+    <!-- Verification Badges Section -->
+    <rect x="70" y="410" width="660" height="65" rx="8" fill="url(#verifyGrad)"/>
+    <text x="90" y="435" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">
+      Verification
+    </text>
+    <text x="90" y="458" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#D1FAE5">
+      ✓ IRS 501(c)(3) Active  •  ✓ Charity Navigator A+ Rating
+    </text>
+  </g>
+</svg>

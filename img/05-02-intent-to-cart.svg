@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 550" style="background:#ffffff">
+  <defs>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1"/>
+    </linearGradient>
+
+    <marker id="arrowLarge" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#6B7280"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="45" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="28" font-weight="700" fill="#111827" text-anchor="middle">
+    From Intent to Binding Offer
+  </text>
+  <text x="500" y="75" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#6B7280" text-anchor="middle">
+    How user intent transforms into a merchant's binding commitment
+  </text>
+
+  <!-- Left Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="60" y="120" width="380" height="380" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <rect x="60" y="120" width="380" height="70" rx="14" fill="url(#blueGrad)"/>
+    <rect x="60" y="176" width="380" height="14" fill="url(#blueGrad)"/>
+
+    <circle cx="105" cy="155" r="24" fill="#FFFFFF" opacity="0.2"/>
+    <text x="105" y="155" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" fill="#FFFFFF">📝</text>
+
+    <text x="145" y="150" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">
+      IntentMandate
+    </text>
+    <text x="145" y="172" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="14" fill="#DBEAFE">
+      Module 4: Shopping Agent
+    </text>
+
+    <text x="80" y="225" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="700" fill="#1E40AF">
+      User's Intent
+    </text>
+
+    <rect x="80" y="245" width="340" height="45" rx="8" fill="#EFF6FF"/>
+    <text x="100" y="267.5" dominant-baseline="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#1E3A8A">✓ What I want to do</text>
+
+    <rect x="80" y="300" width="340" height="45" rx="8" fill="#EFF6FF"/>
+    <text x="100" y="322.5" dominant-baseline="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#1E3A8A">⏰ Expires in 1 hour</text>
+
+    <rect x="80" y="355" width="340" height="45" rx="8" fill="#EFF6FF"/>
+    <text x="100" y="377.5" dominant-baseline="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#1E3A8A">🏪 Which merchant can fulfill it</text>
+
+    <rect x="120" y="425" width="260" height="50" rx="10" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+    <text x="250" y="450" dominant-baseline="middle" text-anchor="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="700" fill="#1E40AF">
+      No Commitment Yet
+    </text>
+  </g>
+
+  <!-- Label stays same -->
+  <rect x="435" y="282" width="130" height="24" rx="12" fill="#FFFFFF"/>
+  <text x="500" y="294" dominant-baseline="middle" text-anchor="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#6B7280">
+    transforms into
+  </text>
+
+  <!-- Arrow moved down only -->
+  <line x1="455" y1="355" x2="545" y2="355" stroke="#6B7280" stroke-width="4" marker-end="url(#arrowLarge)"/>
+
+  <!-- Right Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="560" y="120" width="380" height="380" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <rect x="560" y="120" width="380" height="70" rx="14" fill="url(#purpleGrad)"/>
+    <rect x="560" y="176" width="380" height="14" fill="url(#purpleGrad)"/>
+
+    <circle cx="605" cy="155" r="24" fill="#FFFFFF" opacity="0.2"/>
+    <text x="605" y="155" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" fill="#FFFFFF">📋</text>
+
+    <text x="645" y="150" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">
+      CartMandate
+    </text>
+    <text x="645" y="172" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="14" fill="#F3E8FF">
+      Module 5: Merchant Agent
+    </text>
+
+    <text x="580" y="225" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="700" fill="#6B21A8">
+      Merchant's Offer
+    </text>
+
+    <rect x="580" y="245" width="340" height="45" rx="8" fill="#F3E8FF"/>
+    <text x="600" y="267.5" dominant-baseline="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#581C87">✓ What I commit to deliver</text>
+
+    <rect x="580" y="300" width="340" height="45" rx="8" fill="#F3E8FF"/>
+    <text x="600" y="322.5" dominant-baseline="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#581C87">📄 W3C PaymentRequest structure</text>
+
+    <rect x="580" y="355" width="340" height="45" rx="8" fill="#F3E8FF"/>
+    <text x="600" y="370" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#581C87">✍️ Signed by merchant</text>
+    <text x="600" y="390" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="15" fill="#581C87">⏰ Expires in 15 minutes</text>
+
+    <rect x="620" y="425" width="260" height="50" rx="10" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="2"/>
+    <text x="750" y="450" dominant-baseline="middle" text-anchor="middle" font-family="'SF Pro Text','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="700" fill="#6B21A8">
+      Binding Commitment
+    </text>
+  </g>
+</svg>
