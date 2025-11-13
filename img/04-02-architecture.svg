@@ -1,0 +1,270 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" style="background: #ffffff;">
+  <!-- Definitions -->
+  <defs>
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.12"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Agent gradients -->
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow marker -->
+    <marker id="arrowSmall" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#9CA3AF" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="500" y="40" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#111827" text-anchor="middle">
+    Trust Boundaries: Role Separation
+  </text>
+  
+  <text x="500" y="68" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#6B7280" text-anchor="middle">
+    Each agent has limited access—security through isolation
+  </text>
+  
+  <!-- Shopping Agent Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="50" y="110" width="280" height="440" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="50" y="110" width="280" height="70" rx="14" fill="url(#blueGrad)"/>
+    <rect x="50" y="166" width="280" height="14" fill="url(#blueGrad)"/>
+    
+    <!-- Icon -->
+    <circle cx="100" cy="140" r="24" fill="#FFFFFF" fill-opacity="0.2"/>
+    <circle cx="100" cy="138" r="9" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+    <line x1="106" y1="144" x2="111" y2="149" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Agent name -->
+    <text x="135" y="150" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">
+      Shopping Agent
+    </text>
+    
+    <!-- Role label -->
+    <rect x="65" y="200" width="250" height="36" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="190" y="223" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#1E40AF" text-anchor="middle">
+      🔍 DISCOVER &amp; CREATE INTENT
+    </text>
+    
+    <!-- CAN ACCESS section -->
+    <text x="65" y="265" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#059669">
+      ✅ CAN ACCESS:
+    </text>
+    
+    <rect x="75" y="278" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="90" y="299" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Charity database (verified)
+    </text>
+    
+    <rect x="75" y="315" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="90" y="336" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • User's donation query
+    </text>
+    
+    <rect x="75" y="352" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="90" y="373" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Create IntentMandate
+    </text>
+    
+    <!-- CANNOT ACCESS section -->
+    <text x="65" y="415" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#DC2626">
+      🚫 CANNOT ACCESS:
+    </text>
+    
+    <rect x="75" y="428" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="90" y="449" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • Payment credentials
+    </text>
+    
+    <rect x="75" y="465" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="90" y="486" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • User's wallet/cards
+    </text>
+    
+    <rect x="75" y="502" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="90" y="523" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • CartMandate creation
+    </text>
+  </g>
+  
+  <!-- Merchant Agent Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="360" y="110" width="280" height="440" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="360" y="110" width="280" height="70" rx="14" fill="url(#purpleGrad)"/>
+    <rect x="360" y="166" width="280" height="14" fill="url(#purpleGrad)"/>
+    
+    <!-- Icon -->
+    <circle cx="410" cy="140" r="24" fill="#FFFFFF" fill-opacity="0.2"/>
+    <rect x="401" y="130" width="16" height="20" rx="2" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="404" y1="136" x2="413" y2="136" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="404" y1="141" x2="413" y2="141" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="404" y1="146" x2="410" y2="146" stroke="#FFFFFF" stroke-width="1.5"/>
+    
+    <!-- Agent name -->
+    <text x="445" y="150" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">
+      Merchant Agent
+    </text>
+    
+    <!-- Role label -->
+    <rect x="375" y="200" width="250" height="36" rx="8" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="500" y="223" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#6B21A8" text-anchor="middle">
+      📋 CREATE SIGNED OFFER
+    </text>
+    
+    <!-- CAN ACCESS section -->
+    <text x="375" y="265" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#059669">
+      ✅ CAN ACCESS:
+    </text>
+    
+    <rect x="385" y="278" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="400" y="299" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • IntentMandate (from state)
+    </text>
+    
+    <rect x="385" y="315" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="400" y="336" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Cart items &amp; prices
+    </text>
+    
+    <rect x="385" y="352" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="400" y="373" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Create CartMandate
+    </text>
+    
+    <!-- CANNOT ACCESS section -->
+    <text x="375" y="415" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#DC2626">
+      🚫 CANNOT ACCESS:
+    </text>
+    
+    <rect x="385" y="428" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="400" y="449" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • Payment credentials
+    </text>
+    
+    <rect x="385" y="465" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="400" y="486" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • User's payment data
+    </text>
+    
+    <rect x="385" y="502" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="400" y="523" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • Charity database
+    </text>
+  </g>
+  
+  <!-- Credentials Provider Card -->
+  <g filter="url(#cardShadow)">
+    <rect x="670" y="110" width="280" height="440" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="670" y="110" width="280" height="70" rx="14" fill="url(#greenGrad)"/>
+    <rect x="670" y="166" width="280" height="14" fill="url(#greenGrad)"/>
+    
+    <!-- Icon -->
+    <circle cx="720" cy="140" r="24" fill="#FFFFFF" fill-opacity="0.2"/>
+    <rect x="709" y="134" width="22" height="15" rx="2" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="709" y1="138" x2="731" y2="138" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="713" y1="144" x2="722" y2="144" stroke="#FFFFFF" stroke-width="1.5"/>
+    
+    <!-- Agent name -->
+    <text x="755" y="150" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">
+      Credentials Provider
+    </text>
+    
+    <!-- Role label -->
+    <rect x="685" y="200" width="250" height="36" rx="8" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="810" y="223" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#065F46" text-anchor="middle">
+      💳 PROCESS PAYMENT
+    </text>
+    
+    <!-- CAN ACCESS section -->
+    <text x="685" y="265" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#059669">
+      ✅ CAN ACCESS:
+    </text>
+    
+    <rect x="695" y="278" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="710" y="299" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • CartMandate (from state)
+    </text>
+    
+    <rect x="695" y="315" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="710" y="336" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Payment methods/tools
+    </text>
+    
+    <rect x="695" y="352" width="240" height="30" rx="6" fill="#D1FAE5"/>
+    <text x="710" y="373" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#065F46">
+      • Process transactions
+    </text>
+    
+    <!-- CANNOT ACCESS section -->
+    <text x="685" y="415" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#DC2626">
+      🚫 CANNOT ACCESS:
+    </text>
+    
+    <rect x="695" y="428" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="710" y="449" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • User's shopping history
+    </text>
+    
+    <rect x="695" y="465" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="710" y="486" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • Charity database
+    </text>
+    
+    <rect x="695" y="502" width="240" height="30" rx="6" fill="#FEE2E2"/>
+    <text x="710" y="523" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#991B1B">
+      • IntentMandate creation
+    </text>
+  </g>
+  
+  <!-- Arrows showing flow -->
+  <line x1="335" y1="330" x2="355" y2="330" stroke="#9CA3AF" stroke-width="2.5" marker-end="url(#arrowSmall)" stroke-dasharray="4,4"/>
+  <line x1="645" y1="330" x2="665" y2="330" stroke="#9CA3AF" stroke-width="2.5" marker-end="url(#arrowSmall)" stroke-dasharray="4,4"/>
+  
+  <!-- Shared State Section -->
+  <g filter="url(#cardShadow)">
+    <!-- increased height to make room for wrapped text -->
+    <rect x="200" y="590" width="600" height="100" rx="12" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+    
+    <text x="500" y="620" font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#374151" text-anchor="middle">
+      Shared State (The "Notepad")
+    </text>
+    
+    <!-- wrap long caption into two centered lines -->
+    <text x="500" y="640" font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">
+      <tspan x="500" dy="0">Agents communicate only through credentials:</tspan>
+      <tspan x="500" dy="18">IntentMandate → CartMandate → PaymentMandate</tspan>
+    </text>
+  </g>
+  
+  <!-- Connection lines from agents to shared state -->
+  <line x1="190" y1="555" x2="190" y2="585" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="500" y1="555" x2="500" y2="585" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="810" y1="555" x2="810" y2="585" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="3,3"/>
+</svg>
