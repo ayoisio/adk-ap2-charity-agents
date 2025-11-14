@@ -88,7 +88,8 @@ def validate_ap2_cartmandate(cart_mandate: dict) -> tuple[bool, list[str]]:
                     "request_payer_name",
                     "request_payer_email",
                     "request_payer_phone",
-                    "request_shipping"
+                    "request_shipping",
+                    "shipping_type"
                 }
                 for key in options:
                     if key not in valid_option_keys:
