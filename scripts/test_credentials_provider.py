@@ -14,8 +14,7 @@ from datetime import datetime, timedelta, timezone
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.genai.types import Content, Part
-from charity_advisor.credentials_provider.agent_mock import credentials_provider_mock  # ← Use mock
-
+from charity_advisor.credentials_provider.agent_mock import credentials_provider_mock
 
 async def test_credentials_provider():
     """Test the Credentials Provider with simulated Merchant Agent data."""
@@ -36,25 +35,26 @@ async def test_credentials_provider():
             "user_cart_confirmation_required": False,
             "payment_request": {
                 "method_data": [{
-                    "supported_methods": ["card", "bank_transfer"],
+                    "supported_methods": "CARD",
                     "data": {
                         "supported_networks": ["visa", "mastercard", "amex"],
                         "supported_types": ["debit", "credit"]
                     }
                 }],
                 "details": {
+                    "id": "order_test123",
                     "display_items": [{
                         "label": "Donation to Room to Read",
                         "amount": {
                             "currency": "USD",
-                            "value": "50.00"
+                            "value": 50.0
                         }
                     }],
                     "total": {
                         "label": "Total Donation",
                         "amount": {
                             "currency": "USD",
-                            "value": "50.00"
+                            "value": 50.0
                         }
                     }
                 },
@@ -62,7 +62,8 @@ async def test_credentials_provider():
                     "request_payer_name": False,
                     "request_payer_email": False,
                     "request_payer_phone": False,
-                    "request_shipping": False
+                    "request_shipping": False,
+                    "shipping_type": None
                 }
             }
         },
@@ -83,14 +84,14 @@ async def test_credentials_provider():
     print("\nSimulated CartMandate from Merchant Agent:")
     print(f"  - Cart ID: {cart_mandate['contents']['id']}")
     print(f"  - Merchant: {cart_mandate['contents']['merchant_name']}")
-    print(f"  - Amount: ${cart_mandate['contents']['payment_request']['details']['total']['amount']['value']}")
+    print(f"  - Amount: ${cart_mandate['contents']['payment_request']['details']['total']['amount']['value']:.2f}")
     print(f"  - Expires: {cart_mandate['contents']['cart_expiry']}")
     print(f"  - Signature: {cart_mandate['merchant_authorization']}")
     print("\nCalling Credentials Provider to process payment...")
     print("=" * 70)
 
     runner = Runner(
-        agent=credentials_provider_mock,  # ← Use mock
+        agent=credentials_provider_mock,
         app_name=app_name,
         session_service=session_service
     )
@@ -126,10 +127,13 @@ async def test_credentials_provider():
             print(f"  Payment Mandate ID: {contents.get('payment_mandate_id')}")
             print(f"  Linked to Cart: {contents.get('payment_details_id')}")
             print(f"  User Consent: {contents.get('user_consent')}")
-            print(f"  Amount: {contents.get('amount', {}).get('currency')} {contents.get('amount', {}).get('value')}")
-            print(f"  Merchant: {contents.get('merchant_name')}")
+            if 'payment_details_total' in contents:
+                total = contents['payment_details_total']['amount']
+                print(f"  Amount: {total.get('currency')} {total.get('value')}")
+            print(f"  Merchant: {contents.get('merchant_agent')}")
 
-        print(f"  Agent Present: {payment_mandate.get('agent_present')}")
+        if "agent_present" in payment_mandate:
+             print(f"  Agent Present: {payment_mandate.get('agent_present')}")
         print("=" * 70)
     else:
         print("\n❌ Error: PaymentMandate not found in state")
