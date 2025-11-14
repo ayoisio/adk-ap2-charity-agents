@@ -50,15 +50,15 @@ async def find_charities(cause_area: str) -> Dict[str, Any]:
 def _validate_charity_data(charity_name: str, charity_ein: str, amount: float) -> tuple[bool, str]:
     """
     Validates charity selection data before saving to state.
-
+    
     This helper function performs basic validation to ensure data quality
     before it gets passed to other agents in the pipeline.
-
+    
     Args:
         charity_name: Name of the selected charity
         charity_ein: Employer Identification Number (should be format: XX-XXXXXXX)
         amount: Donation amount in USD
-
+        
     Returns:
         (is_valid, error_message): Tuple where is_valid is True if all checks pass,
                                     and error_message contains details if validation fails
@@ -66,18 +66,18 @@ def _validate_charity_data(charity_name: str, charity_ein: str, amount: float) -
     # Validate charity name
     if not charity_name or not charity_name.strip():
         return False, "Charity name cannot be empty"
-
+    
     # Validate EIN format (should be XX-XXXXXXX)
     if not charity_ein or len(charity_ein) != 10 or charity_ein[2] != '-':
         return False, f"Invalid EIN format: {charity_ein}. Expected format: XX-XXXXXXX"
-
+    
     # Validate amount
     if amount <= 0:
         return False, f"Donation amount must be positive, got: ${amount}"
-
+    
     if amount > 1_000_000:
         return False, f"Donation amount exceeds maximum of $1,000,000: ${amount}"
-
+    
     # All checks passed
     return True, ""
 
@@ -85,48 +85,48 @@ def _validate_charity_data(charity_name: str, charity_ein: str, amount: float) -
 def _create_intent_mandate(charity_name: str, charity_ein: str, amount: float) -> dict:
     """
     Creates an IntentMandate - AP2's verifiable credential for user intent.
-
-    An IntentMandate captures what the user wants to do in a structured,
-    machine-readable format. This is the first of three verifiable credentials
-    in the AP2 architecture.
-
+    
+    This function uses the official Pydantic model from the `ap2` package
+    to create a validated IntentMandate object before converting it to a dictionary.
+    
     Args:
         charity_name: Name of the selected charity
         charity_ein: Employer Identification Number
         amount: Donation amount in USD
-
+        
     Returns:
         Dictionary containing the IntentMandate structure per AP2 specification
     """
     from datetime import datetime, timedelta, timezone
-
-    # Current timestamp
+    from ap2.types.mandate import IntentMandate
+    
+    # Set the expiry for the intent
+    expiry = datetime.now(timezone.utc) + timedelta(hours=1)
+    
+    # Step 1: Instantiate the Pydantic model with official AP2 fields
+    intent_mandate_model = IntentMandate(
+        user_cart_confirmation_required=True,
+        natural_language_description=f"Donate ${amount:.2f} to {charity_name}",
+        merchants=[charity_name],
+        skus=None,
+        requires_refundability=False,
+        intent_expiry=expiry.isoformat()
+    )
+    
+    # Step 2: Convert the validated model to a dictionary for state storage
+    intent_mandate_dict = intent_mandate_model.model_dump()
+    
+    # Step 3: Add the codelab's custom fields to the dictionary
     timestamp = datetime.now(timezone.utc)
-
-    # Intent expires in 1 hour (user must complete transaction before then)
-    expiry = timestamp + timedelta(hours=1)
-
-    # Create AP2-compliant IntentMandate
-    intent_mandate = {
-        # Core AP2 fields
-        "user_cart_confirmation_required": True,  # User must approve the cart
-        "natural_language_description": f"Donate ${amount:.2f} to {charity_name}",
-        "merchants": [charity_name],  # Which merchant(s) can fulfill this
-        "skus": None,  # Not applicable for donations (used for product SKUs)
-        "requires_refundability": False,  # Donations typically non-refundable
-        "intent_expiry": expiry.isoformat(),  # When this intent expires
-
-        # Metadata
+    intent_mandate_dict.update({
         "timestamp": timestamp.isoformat(),
         "intent_id": f"intent_{charity_ein.replace('-', '')}_{int(timestamp.timestamp())}",
-
-        # Domain-specific context (charity donations)
         "charity_ein": charity_ein,
         "amount": amount,
         "currency": "USD"
-    }
-
-    return intent_mandate
+    })
+    
+    return intent_mandate_dict
 
 
 async def save_user_choice(
@@ -155,18 +155,17 @@ async def save_user_choice(
     if not is_valid:
         logger.error(f"Validation failed: {error_message}")
         return {"status": "error", "message": error_message}
-
-    # Create AP2 IntentMandate
+    
+    # Create AP2 IntentMandate using our updated helper function
     intent_mandate = _create_intent_mandate(charity_name, charity_ein, amount)
-
+    
     # Write the IntentMandate to shared state for the next agent
-    # This is the ONLY data we write - downstream agents will read from this credential
     tool_context.state["intent_mandate"] = intent_mandate
-
+    
     logger.info(f"Successfully created IntentMandate and saved to state")
     logger.info(f"Intent ID: {intent_mandate['intent_id']}")
     logger.info(f"Intent expires: {intent_mandate['intent_expiry']}")
-
+    
     # Return success confirmation
     return {
         "status": "success",
@@ -179,13 +178,13 @@ async def save_user_choice(
 def _format_charity_display(charity: dict) -> str:
     """
     Formats a charity dictionary into a user-friendly display string.
-
+    
     This helper function demonstrates how to transform structured data
     into readable text for the user.
-
+    
     Args:
         charity: Dictionary containing charity data (name, ein, mission, rating, efficiency)
-
+        
     Returns:
         Formatted string suitable for display to the user
     """
@@ -194,10 +193,10 @@ def _format_charity_display(charity: dict) -> str:
     mission = charity.get('mission', 'No mission statement available')
     rating = charity.get('rating', 0.0)
     efficiency = charity.get('efficiency', 0.0)
-
+    
     # Format efficiency as percentage
     efficiency_pct = int(efficiency * 100)
-
+    
     # Build formatted string
     display = f"""
 **{name}** (EIN: {ein})
@@ -205,5 +204,5 @@ def _format_charity_display(charity: dict) -> str:
 💰 Efficiency: {efficiency_pct}% of funds go to programs
 📋 Mission: {mission}
     """.strip()
-
+    
     return display
